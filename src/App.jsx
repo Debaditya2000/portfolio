@@ -5,10 +5,12 @@ import emailjs from "emailjs-com";
 
 export default function App() {
   const [dark, setDark] = useState(() => {
-  return localStorage.getItem("theme") === "dark";});
+    return localStorage.getItem("theme") === "dark";
+  });
+
   const [text, setText] = useState("");
 
-  const fullText = "Hi, I'm Debaditya Laha — Software Engineer";
+  const fullText = "Debaditya Laha";
 
   useEffect(() => {
     let i = 0;
@@ -16,30 +18,31 @@ export default function App() {
       setText(fullText.slice(0, i));
       i++;
       if (i > fullText.length) clearInterval(interval);
-    }, 70);
+    }, 80);
     return () => clearInterval(interval);
   }, []);
-  useEffect(() => {
-  localStorage.setItem("theme", dark ? "dark" : "light");
-}, [dark]);
 
+  useEffect(() => {
+    localStorage.setItem("theme", dark ? "dark" : "light");
+  }, [dark]);
 
   const sendEmail = (e) => {
     e.preventDefault();
 
-    emailjs.sendForm(
-      "service_79d58ol",
-      "template_0nug984",
-      e.target,
-      "S4UsVToLTJLwmwE3F"
-    )
-    .then(() => {
-      alert("Message sent successfully!");
-      e.target.reset();
-    })
-    .catch(() => {
-      alert("Failed to send message.");
-    });
+    emailjs
+      .sendForm(
+        "service_79d58ol",
+        "template_0nug984",
+        e.target,
+        "S4UsVToLTJLwmwE3F"
+      )
+      .then(() => {
+        alert("Message sent successfully!");
+        e.target.reset();
+      })
+      .catch(() => {
+        alert("Failed to send message.");
+      });
   };
 
   const buttonStyle = (bg) => ({
@@ -54,7 +57,7 @@ export default function App() {
     fontWeight: "bold",
     cursor: "pointer",
     boxShadow: "0 8px 18px rgba(0,0,0,0.2)",
-    transition: "all 0.25s ease"
+    transition: "all 0.25s ease",
   });
 
   const hoverOn = (e) => {
@@ -68,157 +71,224 @@ export default function App() {
   };
 
   return (
-    <div style={{
-      background: dark ? "#0f172a" : "#f9fafb",
-      color: dark ? "white" : "black",
-      minHeight: "100vh",
-      fontFamily: "Arial",
-      transition: "0.3s ease"
-    }}>
-
+    <div
+      style={{
+        background: dark ? "#0f172a" : "#f9fafb",
+        color: dark ? "white" : "black",
+        minHeight: "100vh",
+        fontFamily: "Arial",
+        transition: "0.3s ease",
+      }}
+    >
       {/* Navbar */}
-      <div style={{
-        position: "sticky",
-        top: 0,
-        background: dark ? "#020617" : "white",
-        padding: "15px 30px",
-        display: "flex",
-        justifyContent: "space-between",
-        zIndex: 1000
-      }}>
+      <div
+        style={{
+          position: "sticky",
+          top: 0,
+          background: dark ? "#020617" : "white",
+          padding: "15px 30px",
+          display: "flex",
+          justifyContent: "space-between",
+          zIndex: 1000,
+        }}
+      >
         <strong>Debaditya</strong>
         <button
-  onClick={() => setDark(!dark)}
-  style={{
-    padding: "8px 14px",
-    borderRadius: "10px",
-    border: "none",
-    cursor: "pointer",
-    fontWeight: "bold",
-    background: dark ? "#334155" : "#e2e8f0",
-    color: dark ? "white" : "black",
-    transition: "0.3s"
-  }}
->
-  {dark ? "☀ Light Mode" : "🌙 Dark Mode"}
-</button>
-
+          onClick={() => setDark(!dark)}
+          style={{
+            padding: "8px 14px",
+            borderRadius: "10px",
+            border: "none",
+            cursor: "pointer",
+            fontWeight: "bold",
+            background: dark ? "#334155" : "#e2e8f0",
+            color: dark ? "white" : "black",
+          }}
+        >
+          {dark ? "☀ Light Mode" : "🌙 Dark Mode"}
+        </button>
       </div>
 
-      <div style={{ padding: "40px" }}>
-
+      <div style={{ padding: "40px", maxWidth: "1100px", margin: "0 auto" }}>
         {/* Hero */}
-        <motion.h1 initial={{opacity:0}} animate={{opacity:1}}>
+        <motion.h1 initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
           {text}
         </motion.h1>
-        <p>Python | Backend | Flask | Node.js | AWS</p>
+
+        <h2 style={{ fontWeight: "normal" }}>
+          Software Engineer | Python | Backend | AWS
+        </h2>
+
+        <p style={{ maxWidth: "650px" }}>
+          I build real-world backend systems and web applications using Python,
+          Flask, Node.js, and MongoDB. Actively seeking entry-level Software
+          Engineer / Backend Developer roles.
+        </p>
 
         {/* Buttons */}
-        <div style={{ display: "flex", gap: "15px", flexWrap: "wrap", margin: "20px 0" }}>
-
-          <a href="https://linkedin.com/in/debaditya-laha-079767176" target="_blank" style={{ textDecoration: "none" }}>
-            <button style={buttonStyle("#0A66C2")} onMouseOver={hoverOn} onMouseOut={hoverOff()}>
+        <div
+          style={{
+            display: "flex",
+            gap: "15px",
+            flexWrap: "wrap",
+            margin: "20px 0",
+          }}
+        >
+          <a
+            href="https://linkedin.com/in/debaditya-laha-079767176"
+            target="_blank"
+            rel="noreferrer"
+            style={{ textDecoration: "none" }}
+          >
+            <button
+              style={buttonStyle("#0A66C2")}
+              onMouseOver={hoverOn}
+              onMouseOut={hoverOff()}
+            >
               <FaLinkedin /> LinkedIn
             </button>
           </a>
 
-          <a href="https://github.com/Debaditya2000" target="_blank" style={{ textDecoration: "none" }}>
-            <button style={buttonStyle("#111827")} onMouseOver={hoverOn} onMouseOut={hoverOff()}>
+          <a
+            href="https://github.com/Debaditya2000"
+            target="_blank"
+            rel="noreferrer"
+            style={{ textDecoration: "none" }}
+          >
+            <button
+              style={buttonStyle("#111827")}
+              onMouseOver={hoverOn}
+              onMouseOut={hoverOff()}
+            >
               <FaGithub /> GitHub
             </button>
           </a>
 
-          <a 
-              href="https://drive.google.com/file/d/19hX231mU7KgVW4b01T-ptsAGh9la944T/preview" 
-              target="_blank"
-              rel="noopener noreferrer"
-            > 
-           <button style={buttonStyle("#4F46E5")} onMouseOver={hoverOn} onMouseOut={hoverOff()}>
-             <FaDownload /> Resume
-           </button>
+          <a
+            href="https://drive.google.com/file/d/19hX231mU7KgVW4b01T-ptsAGh9la944T/preview"
+            target="_blank"
+            rel="noreferrer"
+            style={{ textDecoration: "none" }}
+          >
+            <button
+              style={buttonStyle("#4F46E5")}
+              onMouseOver={hoverOn}
+              onMouseOut={hoverOff()}
+            >
+              <FaDownload /> Resume
+            </button>
           </a>
         </div>
+
+        {/* About */}
+        <h2>About Me</h2>
+        <p style={{ maxWidth: "750px", lineHeight: "1.6" }}>
+          I’m a Computer Science graduate passionate about backend development,
+          APIs, and cloud technologies. I enjoy building practical applications
+          that solve real-world problems.
+        </p>
+        <p style={{ maxWidth: "750px", lineHeight: "1.6" }}>
+          I have hands-on experience with Python, Flask, Node.js, MongoDB, REST
+          APIs, Git, and Linux fundamentals. I’m currently seeking opportunities
+          as a Software Engineer, Backend Developer, or Cloud/DevOps Intern.
+        </p>
+
         {/* Projects */}
-        <h2>Projects</h2>
+        <h2 style={{ marginTop: "40px" }}>Projects</h2>
 
-<div style={{
-  display: "grid",
-  gridTemplateColumns: "repeat(auto-fit, minmax(250px,1fr))",
-  gap: "20px"
-}}>
-
-  <motion.a
-    href="https://github.com/Debaditya2000/flask-event-scheduler-api"
-    target="_blank"
-    whileHover={{ scale: 1.05 }}
-    style={{
-      textDecoration: "none",
-      color: "inherit"
-    }}
-  >
-    <div style={{
-      padding: "20px",
-      background: dark ? "#1e293b" : "white",
-      borderRadius: "15px"
-    }}>
-      <h3>Event Scheduler API</h3>
-      <p>Flask REST backend project</p>
-      <p style={{ fontSize: "14px", opacity: 0.7 }}>Click to view on GitHub →</p>
-    </div>
-  </motion.a>
-
-  <motion.a
-    href="https://github.com/Debaditya2000/Employee-Management-System"
-    target="_blank"
-    whileHover={{ scale: 1.05 }}
-    style={{
-      textDecoration: "none",
-      color: "inherit"
-    }}
-  >
-    <div style={{
-      padding: "20px",
-      background: dark ? "#1e293b" : "white",
-      borderRadius: "15px"
-    }}>
-      <h3>Employee Management System</h3>
-      <p>Node.js + MongoDB CRUD app</p>
-      <p style={{ fontSize: "14px", opacity: 0.7 }}>Click to view on GitHub →</p>
-    </div>
-  </motion.a>
-
-  <motion.a
-    href="https://github.com/Debaditya2000/ID-Photo-Attendance-Tracker"
-    target="_blank"
-    whileHover={{ scale: 1.05 }}
-    style={{
-      textDecoration: "none",
-      color: "inherit"
-    }}
-  >
-    <div style={{
-      padding: "20px",
-      background: dark ? "#1e293b" : "white",
-      borderRadius: "15px"
-    }}>
-      <h3>Attendance Automation Tool</h3>
-      <p>Python GUI automation project</p>
-      <p style={{ fontSize: "14px", opacity: 0.7 }}>Click to view on GitHub →</p>
-    </div>
-  </motion.a>
-
-</div>
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
+            gap: "20px",
+          }}
+        >
+          {[
+            {
+              title: "Event Scheduler API",
+              desc: "Backend REST API to create and manage events.",
+              tech: "Python, Flask, REST API, Postman",
+              link: "https://github.com/Debaditya2000/flask-event-scheduler-api",
+            },
+            {
+              title: "Employee Management System",
+              desc: "Full-stack CRUD web app for managing employees.",
+              tech: "Node.js, Express, MongoDB, EJS, Bootstrap",
+              link: "https://github.com/Debaditya2000/Employee-Management-System",
+            },
+            {
+              title: "Attendance Automation Tool",
+              desc: "Python tool to automate attendance processing.",
+              tech: "Python",
+              link: "https://github.com/Debaditya2000/ID-Photo-Attendance-Tracker",
+            },
+          ].map((project, index) => (
+            <motion.a
+              key={index}
+              href={project.link}
+              target="_blank"
+              rel="noreferrer"
+              whileHover={{ scale: 1.05 }}
+              style={{ textDecoration: "none", color: "inherit" }}
+            >
+              <div
+                style={{
+                  padding: "20px",
+                  background: dark ? "#1e293b" : "white",
+                  borderRadius: "15px",
+                  minHeight: "160px",
+                }}
+              >
+                <h3>{project.title}</h3>
+                <p>{project.desc}</p>
+                <p style={{ fontSize: "14px", opacity: 0.8 }}>
+                  Tech: {project.tech}
+                </p>
+                <p style={{ fontSize: "14px", opacity: 0.6 }}>
+                  Click to view on GitHub →
+                </p>
+              </div>
+            </motion.a>
+          ))}
+        </div>
 
         {/* Contact */}
-        <h2 style={{ marginTop: "40px" }}>Contact Me</h2>
+        <h2 style={{ marginTop: "50px" }}>Contact</h2>
+
+        <p>
+          📧 Email: debadityalaha@gmail.com <br />
+          💼 LinkedIn: linkedin.com/in/debaditya-laha-079767176 <br />
+          💻 GitHub: github.com/Debaditya2000 <br />
+          📍 Bengaluru, India
+        </p>
 
         <form onSubmit={sendEmail} style={{ maxWidth: "400px" }}>
-          <input name="name" placeholder="Your Name" required style={{ width: "100%", padding: "10px" }} /><br /><br />
-          <input name="email" placeholder="Your Email" required style={{ width: "100%", padding: "10px" }} /><br /><br />
-          <textarea name="message" placeholder="Your Message" required style={{ width: "100%", padding: "10px" }} /><br /><br />
+          <input
+            name="name"
+            placeholder="Your Name"
+            required
+            style={{ width: "100%", padding: "10px" }}
+          />
+          <br />
+          <br />
+          <input
+            name="email"
+            placeholder="Your Email"
+            required
+            style={{ width: "100%", padding: "10px" }}
+          />
+          <br />
+          <br />
+          <textarea
+            name="message"
+            placeholder="Your Message"
+            required
+            style={{ width: "100%", padding: "10px" }}
+          />
+          <br />
+          <br />
           <button type="submit">Send Message</button>
         </form>
-
       </div>
     </div>
   );
